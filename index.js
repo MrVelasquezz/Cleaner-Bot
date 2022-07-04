@@ -12,7 +12,7 @@ client.once('ready', () => {
 
 client.on('messageCreate', async m => {
     if (m.content.trim() == '-clean') {
-        let content = await m.channel.messages.fetch({limit: 150})
+        let content = await m.channel.messages.fetch({limit: 100})
         let content2 = JSON.stringify(content)
         content.forEach(msg => {
             try {
