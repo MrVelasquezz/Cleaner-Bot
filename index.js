@@ -11,12 +11,14 @@ client.once('ready', () => {
 })
 
 client.on('messageCreate', async m => {
-    if (m.content.trim() == '-clean') {
-        let content = await m.channel.messages.fetch({limit: 100})
+    if (m.content.trim() == '-clean' || m.content.trim() == '/clean') {
+        let content = await m.channel.messages.fetch({limit: 100}) //max 100
         let content2 = JSON.stringify(content)
         content.forEach(msg => {
             try {
-                m.channel.messages.delete(msg.id)
+                if(msg.pinned != true){
+                    m.channel.messages.delete(msg.id)
+                }
             } catch (e) {
                 console.error(e)
             }
